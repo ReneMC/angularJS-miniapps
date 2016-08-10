@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="myFirstApp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Hola controller</title>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- jQuery  -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Bootstrap JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- AngularJS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<!-- JS Controller -->
+	<script src="controller.js"></script>
+</head>
+<body ng-controller="FirstController">
+
+<div class="container-fluid">
+  <div class="row">
+   	<div class="alert alert-info" role="alert">
+   		<p>{{"Hola " + nombre}}</p>
+   	</div>
+  </div> <!--.row-->
+</div> <!--.container-fluid-->
+
+<div class="container">
+  <div class="row">
+		<label for="">User</label><br>
+		<input class="form-control" type="text" ng-model="nuevoComentario.username"><br>
+		<label for="comentario">Comment</label><br>
+		<textarea class="form-control" name="comentario" rows="3" ng-model="nuevoComentario.comentario"></textarea><br>
+		<button class="btn btn-primary" ng-click="agregarComentario()">Agregar</button>
+  </div> <!--.row-->
+  <div class="row">
+		<h3>Comentarios</h3>
+		<ul>
+			<li ng-repeat="comentario in comentarios">
+				<strong>{{comentario.username}}: </strong>{{comentario.comentario}}
+			</li>
+		</ul>
+  </div> <!--.row-->
+</div> <!--.container-->
+
+</body>
+</html>

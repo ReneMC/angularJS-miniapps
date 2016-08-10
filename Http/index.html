@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="myFirstApp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Ajax</title>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- jQuery  -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Bootstrap JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- AngularJS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<!-- JS Controller -->
+	<script src="controller.js"></script>
+</head>
+
+<style>
+	.jumbotron {
+		background-color: #d9edf7;
+	}	
+</style>
+<body ng-controller="FirstController">
+
+	<div class="jumbotron">
+		<h1 class="text-center">Blog Posts</h1>
+	</div>
+	
+	<div class="container">
+		<div class="row">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					New Post
+				</div>
+				<div class="panel-body">
+					<input type="text" class="form-control" ng-model="newPost.title" placeholder="Post title"><br>
+					<textarea name="" class="form-control" ng-model="newPost.body" rows="3" placeholder="Post body"></textarea><br>
+					<button class="btn btn-info" ng-click="addPost()">Send</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+	  <div class="row">
+		<div class="panel panel-info" ng-repeat="post in posts | orderBy : '-id'">
+		  <div class="panel-heading">
+			<h2>{{post.title}}</h2>
+		  </div>
+		  <div class="panel-body">
+			{{post.body}}
+		  </div>
+		</div>
+	  </div> <!--.row-->
+	</div> <!--.container-->
+
+</body>
+</html>
