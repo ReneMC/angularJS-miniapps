@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html lang="es" ng-app="ToDoList">
+<html lang="es" ng-app="filtersModule">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>To do List</title>
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- Prettify -->
+	<link rel="stylesheet" href="https://cdn.rawgit.com/google/code-prettify/master/styles/desert.css">
 	<!-- jQuery  -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<!-- Bootstrap JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<!-- AngularJS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-	<!-- Angular Local Storage -->
-	<script src="angular-local-storage.min.js"></script>
+	<!-- Prettify -->
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 	<!-- JS Controller -->
 	<script src="controller.js"></script>
 </head>
@@ -24,48 +26,47 @@
 	}	
 </style>
 
-<body ng-controller="ToDoController">
+<body ng-controller="FiltersController">
 
 	<div class="jumbotron">
-		<h1 class="text-center">To-do list</h1>
+		<h1 class="text-center">Filters</h1>
 	</div>
-
+	
 	<div class="container">
 	  <div class="row">
-		<div class="panel panel-primary">
+		<div class="panel panel-success">
 			<div class="panel-heading">
-				Agregar Nueva Actividad
+				Currency converter
 			</div>
-			<form ng-submit="addActv()">
-				<div class="panel-body">
-					<div class="col-md-6 col-sm-6">
-						<input type="text" class="form-control" ng-model="newActv.descripcion" placeholder="Actividad a realizar">
-					</div>
-					<div class="col-md-6 col-sm-6">
-						<input type="date" class="form-control" ng-model="newActv.fecha">
-					</div>
-				</div>
-				<div class="panel-footer">
-					<input type="submit" class="btn btn-info" value="Guardar">
-				</div>
-			</form>
+			<div class="panel-body">
+				<p>${{ unit }} dlls son: </p>
+				<p>{{unit * moneda.dolar | currency}} pesos</p>
+			</div>
+			<div class="panel-footer">
+			<label>Edit: </label>
+				<input type="number" class="form-control" placeholder="$0.00 pesos" ng-model="unit">
+			</div>
 		</div>
 	  </div> <!--.row-->
 	</div> <!--.container-->
 	
 	<div class="container">
 	  <div class="row">
-		<div class="panel panel-danger">
+		<div class="panel panel-success">
 			<div class="panel-heading">
-				Actividades
+				Clean HTML tags from code
 			</div>
-			<div class="panel-body" ng-repeat="actividad in todo">
-				<label>
-					{{actividad.descripcion}} on {{actividad.fecha | date:'short'}}
-				</label>
+			<div class="panel-body">
+				<label>Before: </label>
+				<pre class="prettyprint" lang-html>
+					{{ mi_html }}
+				</pre>
+				<label>After: </label>
+				<pre>{{ mi_html | removeHtml }}</pre>
 			</div>
 			<div class="panel-footer">
-				<button class="btn btn-danger" ng-click="clean()">Limpiar</button>
+			<label>Edit: </label>
+				<textarea rows="6" class="form-control" placeholder="Write HTML code" ng-model="mi_html"></textarea>
 			</div>
 		</div>
 	  </div> <!--.row-->
