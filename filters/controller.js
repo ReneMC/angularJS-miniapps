@@ -1,26 +1,34 @@
 var app = angular.module("filtersModule",[])
 	.filter("removeHtml",function(){
 		return function(texto){
-			return String(texto).replace(/<[^>]+>/gm, '');
+			/* Rule for HTML tags deletion */
+			return String(texto).replace(/<[^>]+>/gm,'');
 		}
 	})
 	app.controller("FiltersController",function($scope,$http){
-		$scope.mi_html = '\n<div class="jumbo-div>\n<h1 class="super-gigante">Hola!</h1>\n<p class="useless-paragraph">Esto es un párrafo!</p>\n<div/>'
+		/* Default values */
+		$scope.mi_html = '\n<div class="jumbo-div>\n<h1 class="super-gigante">Hola!</h1>\n<p class="useless-paragraph">Esto es un párrafo!</p>\n<div/>';
 		$scope.unit = 100;
 		$scope.moneda = {};
 		
-		// To calculate exchange rate directly from bitapeso.com's API
-		$http.get('http://bitapeso.com/json/')
+		/* To calculate real time exchange rate directly from fixer.io's API */
+		$http.get('http://api.fixer.io/latest?base=USD')
 		.success(function(data){
+			console.log(data);
 			$scope.moneda = data;
 		})
-		// In case Cross Origin issue appears we hard code the object's values
+		/* Hard coded the object's values in case Cross Origin issue appears */
 		.error(function(err){
 			var data = {
-				"btc": 1, 
-				"dolar": 18.400999, 
-				"mxn": 10998.01 ,
-				"usd": 598
+				"base":"USD",
+				"date":"2016-08-11",
+				"rates": {			
+					"BRL":3.1522,
+					"CAD":1.3054,
+					"JPY":101.36,
+					"MXN":18.4281,
+					"EUR":0.89662
+				}
 			}
 			$scope.moneda = data;
 		});

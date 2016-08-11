@@ -39,8 +39,8 @@
 				Currency converter
 			</div>
 			<div class="panel-body">
-				<p>${{ unit }} dlls son: </p>
-				<p>{{unit * moneda.dolar | currency}} pesos</p>
+				<p>{{ unit | currency}} dollars are: </p>
+				<p>{{ unit * moneda.rates.MXN | currency }} MXN</p>
 			</div>
 			<div class="panel-footer">
 			<label>Edit: </label>
