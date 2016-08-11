@@ -5,7 +5,7 @@ var app = angular.module("filtersModule",[])
 		}
 	})
 	app.controller("FiltersController",function($scope,$http){
-		$scope.mi_html = '\n<h1 class="super-gigante">Hola!</h1>\n<p class="useless-paragraph">Esto es un parrafo!</>'
+		$scope.mi_html = '\n<div class="jumbo-div>\n<h1 class="super-gigante">Hola!</h1>\n<p class="useless-paragraph">Esto es un párrafo!</p>\n<div/>'
 		$scope.unit = 100;
 		$scope.moneda = {};
 		
