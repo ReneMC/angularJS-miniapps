@@ -31,5 +31,8 @@ var app = angular.module("filtersModule",[])
 				}
 			}
 			$scope.moneda = data;
+			console.log("Oh no, somethings wrong.");
+			console.table(data);
+			
 		});
 	});
