@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="ToDoList">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>To do List</title>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- jQuery  -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Bootstrap JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- AngularJS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<!-- Angular Local Storage -->
+	<script src="angular-local-storage.min.js"></script>
+	<!-- JS Controller -->
+	<script src="controller.js"></script>
+</head>
+
+<style>
+	.jumbotron {
+		background-color: #d9edf7;
+	}	
+</style>
+
+<body ng-controller="ToDoController">
+
+	<div class="jumbotron">
+		<h1 class="text-center">To-do list</h1>
+	</div>
+
+	<div class="container">
+	  <div class="row">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				Agregar Nueva Actividad
+			</div>
+			<form ng-submit="addActv()">
+				<div class="panel-body">
+					<div class="col-md-6 col-sm-6">
+						<input type="text" class="form-control" ng-model="newActv.descripcion" placeholder="Actividad a realizar">
+					</div>
+					<div class="col-md-6 col-sm-6">
+						<input type="date" class="form-control" ng-model="newActv.fecha">
+					</div>
+				</div>
+				<div class="panel-footer">
+					<input type="submit" class="btn btn-info" value="Guardar">
+				</div>
+			</form>
+		</div>
+	  </div> <!--.row-->
+	</div> <!--.container-->
+	
+	<div class="container">
+	  <div class="row">
+		<div class="panel panel-danger">
+			<div class="panel-heading">
+				Actividades
+			</div>
+			<div class="panel-body" ng-repeat="actividad in todo">
+				<label>
+					{{actividad.descripcion}} on {{actividad.fecha | date:'short'}}
+					<button class="btn btn-xs btn-danger" ng-click="removeActv(actividad)"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></button>
+				</label>
+			</div>
+			<div class="panel-footer">
+				<button class="btn btn-danger" ng-click="clean()">Limpiar</button>
+			</div>
+		</div>
+	  </div> <!--.row-->
+	</div> <!--.container-->
+
+</body>
+</html>
